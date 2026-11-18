@@ -1,0 +1,838 @@
+/* 1. Variables: define colors ONCE, reuse everywhere */
+:root {
+    --primary: #F5C84C;
+    --brown: #75452D;
+    --brown-dark: #3C3027;
+    --cream: #FFF8E8;
+    --white: #FFFFFF;
+    --text: #625447;
+    --primary-dark: #E8B72F;
+    --shadow: 0 12px 35px rgba(60, 48, 39, 0.08);
+    --radius: 20px;
+    --transition: all 0.3s ease;
+}
+
+/* 2. Reset: remove the browser's default spacing */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 3. Base styles for the whole page */
+body {
+    font-family: 'Nunito Sans', sans-serif;
+    color: var(--brown-dark);
+    line-height: 1.7;
+}
+
+a  { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+
+/* 4. Container: keeps content centered and not too wide */
+.container {
+    width: min(1200px, 90%);
+    margin: auto;
+}
+.header {
+    position: sticky;      /* stays at the top while you scroll */
+    top: 0;
+    z-index: 1000;         /* sits above other content */
+    background: var(--cream);
+}
+
+.header .container {
+    min-height: 82px;
+    display: flex;                    /* puts children in a row */
+    align-items: center;              /* centers them vertically */
+    justify-content: space-between;   /* logo left, button right, menu in middle */
+}
+
+.navbar ul {
+    display: flex;
+    gap: 34px;     /* space between menu items */
+}
+
+.btn {
+    display: inline-flex;
+    padding: 13px 25px;
+    border-radius: 50px;   /* makes the pill shape */
+    font-weight: 800;
+}
+
+.btn-primary {
+    background: var(--primary);
+}
+img {
+    width: 100%;
+    display: block;
+    object-fit: cover;
+}
+
+/* Outline button (the "View Pricing" one) */
+.btn-outline {
+    border: 1.5px solid var(--brown);
+    color: var(--brown);
+    background: transparent;
+}
+
+/* Small pill label above headings */
+.section-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #FFF0C5;
+    color: var(--brown);
+    padding: 7px 17px;
+    border-radius: 50px;
+    font-size: 12px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* HERO */
+.hero {
+    background: var(--cream);
+    padding: 85px 0 95px;
+}
+
+.hero-container {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;   /* two columns */
+    align-items: center;
+    gap: 55px;
+}
+
+.hero-content h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(43px, 5.2vw, 65px);
+    line-height: 1.14;
+    font-weight: 800;
+    margin: 15px 0 22px;
+    letter-spacing: -1px;
+}
+
+.hero-content h1 span {
+    color: var(--brown);
+}
+
+.hero-content p {
+    max-width: 530px;
+    font-size: 16px;
+    color: var(--text);
+    line-height: 1.9;
+    margin-bottom: 30px;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.hero-stats {
+    display: flex;
+    gap: 38px;
+    margin-top: 45px;
+}
+
+.hero-stats div {
+    display: flex;
+    flex-direction: column;
+}
+
+.hero-stats h3 {
+    font-size: 24px;
+    color: var(--brown);
+    font-weight: 900;
+}
+
+.hero-stats span {
+    font-size: 12px;
+    color: var(--text);
+    font-weight: 700;
+}
+
+/* Image side */
+.hero-image {
+    position: relative;      /* lets the floating card position itself inside this box */
+    padding: 15px;
+}
+
+.hero-image > img {
+    height: 490px;
+    border-radius: 48% 48% 25px 25px;   /* rounded top = arch shape */
+    background: #F4D98B;
+    box-shadow: var(--shadow);
+}
+
+.floating-card {
+    position: absolute;      /* floats on top of the image */
+    bottom: 55px;
+    left: -30px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: var(--white);
+    padding: 17px 22px;
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+}
+
+.floating-card > i {
+    background: #FFF0C5;
+    color: var(--brown);
+    padding: 14px;
+    border-radius: 50%;
+    font-size: 20px;
+}
+
+.floating-card div {
+    display: flex;
+    flex-direction: column;
+}
+
+.floating-card strong {
+    font-size: 14px;
+}
+
+.floating-card span {
+    font-size: 12px;
+    color: var(--text);
+}
+
+/* SECTION HEADING (reused by every section) */
+.section-heading {
+    text-align: center;
+    max-width: 650px;
+    margin: 0 auto 55px;
+}
+
+.section-tag {
+    margin-bottom: 15px;
+}
+
+.section-heading h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(30px, 4vw, 43px);
+    line-height: 1.2;
+    margin-bottom: 14px;
+}
+
+.section-heading p {
+    font-size: 15px;
+    color: var(--text);
+}
+
+/* NEWS */
+.news-section {
+    padding: 100px 0;
+    background: var(--white);
+}
+
+.news-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);   /* 3 equal columns */
+    gap: 28px;
+}
+
+.news-card {
+    border: 1px solid #F0E8DC;
+    border-radius: var(--radius);
+    overflow: hidden;           /* clips the image to the rounded corners */
+    transition: var(--transition);
+}
+
+.news-card:hover {
+    transform: translateY(-8px);    /* lifts the card up */
+    box-shadow: var(--shadow);
+    border-color: transparent;
+}
+
+.news-image {
+    height: 230px;
+    position: relative;     /* so the category label can sit on top */
+    overflow: hidden;
+}
+
+.news-image img {
+    height: 100%;
+    transition: transform 0.5s ease;
+}
+
+.news-card:hover .news-image img {
+    transform: scale(1.08);     /* slow zoom on the photo */
+}
+
+.news-category {
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
+    background: var(--primary);
+    font-size: 11px;
+    font-weight: 900;
+    padding: 7px 14px;
+    border-radius: 50px;
+}
+
+.news-content {
+    padding: 24px;
+}
+
+.news-date {
+    font-size: 12px;
+    color: var(--brown);
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    margin-bottom: 13px;
+}
+
+.news-content h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 21px;
+    line-height: 1.4;
+    margin-bottom: 12px;
+    transition: var(--transition);
+}
+
+.news-card:hover h3 {
+    color: var(--brown);
+}
+
+.news-content p {
+    font-size: 13px;
+    color: var(--text);
+    margin-bottom: 18px;
+}
+
+.read-more {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 800;
+    color: var(--brown);
+    transition: var(--transition);
+}
+
+.read-more:hover {
+    gap: 14px;      /* arrow slides to the right */
+}
+/* SERVICES */
+.services-section {
+    padding: 100px 0;
+    background: var(--cream);
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);   /* 4 equal columns */
+    gap: 25px;
+}
+
+.service-card {
+    background: var(--white);
+    padding: 35px 28px;
+    border-radius: var(--radius);
+    transition: var(--transition);
+}
+
+.service-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow);
+}
+
+.service-icon {
+    width: 62px;
+    height: 62px;
+    background: #FFF0C5;
+    color: var(--brown);
+    border-radius: 18px;
+    font-size: 24px;
+    display: flex;                 /* centers the icon inside the box */
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 22px;
+    transition: var(--transition);
+}
+
+.service-card:hover .service-icon {
+    background: var(--primary);    /* box turns solid yellow on hover */
+}
+
+.service-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.service-card p {
+    font-size: 13px;
+    color: var(--text);
+    margin-bottom: 20px;
+}
+
+.service-card > a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 800;
+    color: var(--brown);
+    transition: var(--transition);
+}
+
+.service-card > a:hover {
+    gap: 14px;
+}
+/* PRICING */
+.pricing-section {
+    padding: 100px 0;
+    background: var(--white);
+}
+
+.pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: center;      /* cards are centered vertically, so the tall one stands out */
+    gap: 25px;
+}
+
+.pricing-card {
+    position: relative;       /* so the "Most Popular" label can attach to this card */
+    padding: 40px 30px;
+    border: 1px solid #EEE4D6;
+    border-radius: 25px;
+    background: var(--white);
+    transition: var(--transition);
+}
+
+.pricing-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow);
+}
+
+/* The highlighted middle card */
+.pricing-card.popular {
+    background: var(--cream);
+    border: 2px solid var(--primary);
+    padding-top: 50px;
+    padding-bottom: 50px;     /* extra padding makes it taller */
+    box-shadow: var(--shadow);
+}
+
+.popular-label {
+    position: absolute;
+    top: -15px;               /* sticks out above the card */
+    left: 50%;
+    transform: translateX(-50%);   /* centers it horizontally */
+    background: var(--brown);
+    color: var(--white);
+    padding: 7px 22px;
+    font-size: 11px;
+    font-weight: 900;
+    border-radius: 50px;
+    white-space: nowrap;
+}
+
+.pricing-header h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    margin-bottom: 8px;
+}
+
+.pricing-header p {
+    color: var(--text);
+    font-size: 13px;
+}
+
+.price {
+    font-size: 42px;
+    font-weight: 900;
+    color: var(--brown);
+    margin: 25px 0;
+    display: flex;
+    align-items: baseline;    /* lines up "Rs.", the number and "/ visit" on the same baseline */
+    gap: 4px;
+}
+
+.price span {
+    font-size: 18px;
+}
+
+.price small {
+    font-size: 12px;
+    color: var(--text);
+    font-weight: 600;
+}
+
+.pricing-features {
+    margin-bottom: 30px;
+}
+
+.pricing-features li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 11px 0;
+    border-bottom: 1px solid rgba(117, 69, 45, 0.08);
+    font-size: 13px;
+    color: var(--text);
+    font-weight: 700;
+}
+
+.pricing-features li i {
+    color: #A77932;
+    font-size: 13px;
+}
+
+.pricing-card .btn {
+    width: 100%;              /* buttons fill the card width */
+}
+/* FOOTER */
+.footer {
+    background: var(--brown-dark);
+    color: var(--white);
+    padding: 75px 0 0;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1.2fr;   /* first column wider */
+    gap: 45px;
+    padding-bottom: 55px;
+}
+
+.footer .logo {
+    color: var(--white);       /* logo is white on the dark background */
+    margin-bottom: 20px;
+}
+
+.footer-about p {
+    color: #D5C8B9;
+    font-size: 13px;
+    line-height: 1.9;
+    max-width: 310px;
+    margin-bottom: 25px;
+}
+
+.footer-grid h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 19px;
+    color: var(--primary);
+    margin-bottom: 24px;
+}
+
+.footer-links ul {
+    display: flex;
+    flex-direction: column;    /* stack links vertically */
+    gap: 13px;
+}
+
+.footer-links a {
+    color: #D5C8B9;
+    font-size: 13px;
+    transition: var(--transition);
+}
+
+.footer-links a:hover {
+    color: var(--primary);
+    padding-left: 5px;         /* link nudges right on hover */
+}
+
+/* Social icons */
+.social-links {
+    display: flex;
+    gap: 10px;
+}
+
+.social-links a {
+    width: 38px;
+    height: 38px;
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--primary);
+    border-radius: 50%;        /* perfect circle */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+}
+
+.social-links a:hover {
+    background: var(--primary);
+    color: var(--brown-dark);
+    transform: translateY(-4px);
+}
+
+/* Contact info */
+.footer-contact p {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    color: #D5C8B9;
+    font-size: 13px;
+    margin-bottom: 17px;
+}
+
+.footer-contact p i {
+    color: var(--primary);
+    margin-top: 5px;
+}
+
+/* Bottom copyright bar */
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    padding: 22px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;   /* one text left, one right */
+    gap: 15px;
+}
+
+.footer-bottom p {
+    font-size: 12px;
+    color: #C5B7A7;
+}
+/* HEADER EXTRAS */
+html {
+    scroll-behavior: smooth;     /* menu links glide instead of jumping */
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.menu-toggle {
+    display: none;               /* hidden on desktop */
+    background: var(--primary);
+    color: var(--brown-dark);
+    font-size: 20px;
+    width: 43px;
+    height: 43px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+
+/* TABLETS (screens up to 1024px wide) */
+@media (max-width: 1024px) {
+
+    .navbar ul {
+        gap: 18px;
+    }
+
+    .hero-container {
+        gap: 30px;
+    }
+
+    .hero-image > img {
+        height: 420px;
+    }
+
+    .services-grid {
+        grid-template-columns: repeat(2, 1fr);   /* 4 columns become 2 */
+    }
+
+    .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+/* PHONES (screens up to 768px wide) */
+@media (max-width: 768px) {
+
+    .header .container {
+        min-height: 70px;
+    }
+
+    .logo {
+        font-size: 25px;
+    }
+
+    .navbar {
+        display: none;                 /* hide the menu */
+    }
+
+    .header-actions .btn {
+        display: none;                 /* hide the Book button */
+    }
+
+    .menu-toggle {
+        display: flex;                 /* show the hamburger */
+        align-items: center;
+        justify-content: center;
+    }
+
+    .hero {
+        padding: 60px 0;
+    }
+
+    .hero-container {
+        grid-template-columns: 1fr;    /* two columns become one */
+        gap: 35px;
+    }
+
+    .hero-content {
+        text-align: center;
+    }
+
+    .hero-content h1 {
+        font-size: 45px;
+    }
+
+    .hero-content p {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .hero-buttons,
+    .hero-stats {
+        justify-content: center;
+    }
+
+    .hero-stats {
+        gap: 25px;
+    }
+
+    .hero-image {
+        max-width: 500px;
+        margin: auto;
+    }
+
+    .hero-image > img {
+        height: 370px;
+    }
+
+    .floating-card {
+        left: 0;
+        bottom: 35px;
+    }
+
+    .news-section,
+    .services-section,
+    .pricing-section {
+        padding: 70px 0;
+    }
+
+    .news-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 18px;
+    }
+
+    .news-image {
+        height: 190px;
+    }
+
+    .pricing-grid {
+        grid-template-columns: 1fr;
+        max-width: 450px;
+        margin: auto;
+        gap: 30px;
+    }
+}
+
+
+/* SMALL PHONES (screens up to 480px wide) */
+@media (max-width: 480px) {
+
+    .container {
+        width: 92%;
+    }
+
+    .hero-content h1 {
+        font-size: 37px;
+    }
+
+    .hero-content p {
+        font-size: 14px;
+    }
+
+    .hero-stats {
+        gap: 17px;
+    }
+
+    .hero-stats h3 {
+        font-size: 20px;
+    }
+
+    .hero-image > img {
+        height: 310px;
+    }
+
+    .floating-card {
+        padding: 12px 15px;
+    }
+
+    .news-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .news-image {
+        height: 230px;
+    }
+
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .section-heading {
+        margin-bottom: 35px;
+    }
+
+    .section-heading h2 {
+        font-size: 30px;
+    }
+
+    .pricing-card {
+        padding: 35px 23px;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 35px;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+@media (max-width: 768px) {
+    /* these rules only apply when the screen is 768px wide or less */
+}
+@media (max-width: 768px) {
+
+    /* The dropdown panel, hidden until .active is added */
+    .navbar {
+        position: absolute;
+        top: 100%;                  /* starts right below the header */
+        left: 0;
+        width: 100%;
+        background: var(--cream);
+        border-bottom: 1px solid rgba(117, 69, 45, 0.1);
+        box-shadow: var(--shadow);
+        padding: 25px 0 30px;
+    }
+
+    .navbar.active {
+        display: block;             /* this is what makes it appear */
+    }
+
+    .navbar ul {
+        flex-direction: column;     /* stack links vertically */
+        align-items: center;
+        gap: 22px;
+    }
+
+    .navbar a {
+        font-size: 16px;
+    }
+}
