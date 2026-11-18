@@ -5,6 +5,8 @@ A responsive pet care website built with HTML, CSS and JavaScript. It showcases 
 ## Live Demo
 
 **[Visit the website: fizaanwar.github.io/Pawcare](https://fizaanwar.github.io/Pawcare/)**
+**[Visit the website: at Netlify](https://happypetcar.netlify.app/)**
+
 
 ## Features
 
